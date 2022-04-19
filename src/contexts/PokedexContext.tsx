@@ -29,25 +29,24 @@ export const PokedexProvider = ({ children }: PokedexContextProps) => {
     const [pokemonList, setPokemonList] = useState<PokemonProps[]>([]);
 
     useEffect(() => {
-        const getAllPokemon = async () => {
-            const res = await Api.get("/pokemon");
-            const data = await res.data.results;
+        return () => {
+            const getAllPokemon = async () => {
+                const res = await Api.get("/pokemon");
+                const data = await res.data.results;
+                createObjectPokemon(data);
+            };
 
-            function createObjectPokemon(result: { name: string }[]) {
-                result.forEach(async (pokemon) => {
+            const createObjectPokemon = async (result: { name: string }[]) => {
+                const promises = result.map(async (pokemon) => {
                     const res = await Api.get(`/pokemon/${pokemon.name}`);
-                    const data = await res.data;
-                    setPokemonList((prevList) =>
-                        prevList.length < 20
-                            ? [...prevList, data]
-                            : [...prevList]
-                    );
+                    return res.data;
                 });
-            }
-            createObjectPokemon(data);
-        };
+                const results = await Promise.all(promises);
+                setPokemonList(results);
+            };
 
-        getAllPokemon();
+            getAllPokemon();
+        };
     }, []);
 
     return (

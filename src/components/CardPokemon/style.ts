@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.a`
     width: 35rem;
     background-color: var(--blueLight);
     border-radius: 0.2rem;
     overflow: hidden;
     box-shadow: 0 0 7rem #ededed;
+    transition: all 0.2s ease;
     cursor: pointer;
     .image {
         background-color: var(--background-white);
@@ -48,9 +49,12 @@ export const Container = styled.div`
             }
         }
     }
-    &:hover .image {
-        img {
-            transform: scale(1.05);
+    &:hover {
+        .image {
+            img {
+                transform: scale(1.05);
+            }
         }
+        transform: translateY(-5%);
     }
 `;
