@@ -16,7 +16,10 @@ export const Main = () => {
                 {isLoading ? (
                     <Loading />
                 ) : isNotFoundPokemon ? (
-                    <p className="notFoundPokemon">Pokemon Não Encontrado</p>
+                    <div className="notFoundPokemon">
+                        <img src="/pokemon.svg" alt="Pokemon não encontrado" />
+                        <p>Pokémon Não Encontrado</p>
+                    </div>
                 ) : (
                     pokemonList.map((pokemon, index) => (
                         <CardPokemon
@@ -25,9 +28,9 @@ export const Main = () => {
                             id={pokemon.id}
                             image={
                                 pokemon.sprites.other.dream_world
-                                    .front_default ||
-                                pokemon.sprites.other.home.front_default ||
-                                `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`
+                                    .front_default ??
+                                pokemon.sprites.other.home.front_default ??
+                                "/pokebola.png"
                             }
                             type={pokemon.types[0].type.name}
                         />

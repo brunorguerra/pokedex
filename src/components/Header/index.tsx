@@ -18,7 +18,7 @@ export const Header = ({ searchActive }: { searchActive: boolean }) => {
             <Link href="/pokemon">
                 <a>
                     <img
-                        src="/pokemon.svg"
+                        src="/logo-pokemon.svg"
                         alt="Logo Pokemon"
                         title="Pokédex Pokemon"
                     />

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.main`
+const Container = styled.main`
     padding: 7rem 0;
     width: min(120rem, 90%);
     margin: 0 auto;
@@ -120,3 +120,4 @@ export const Container = styled.main`
         }
     }
 `;
+export default Container;

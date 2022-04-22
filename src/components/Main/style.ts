@@ -10,10 +10,19 @@ export const Container = styled.main`
         align-items: center;
         justify-content: center;
         gap: 5rem;
-        p.notFoundPokemon {
-            padding: 5rem 0;
-            font-size: 2rem;
-            color: var(--text-gray);
+        .notFoundPokemon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            p {
+                padding: 5rem 0;
+                font-size: 2rem;
+                color: var(--text-gray);
+            }
+            img {
+                width: 7rem;
+            }
         }
     }
 `;

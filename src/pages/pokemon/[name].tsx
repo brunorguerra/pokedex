@@ -1,8 +1,7 @@
 import Head from "next/head";
 import { Header } from "../../components/Header";
 import { GlobalStyle } from "../../styles/Global";
-import { Api } from "../api/Api";
-import { Container } from "./style";
+import Container from "./style";
 
 type PokemonInfoProps = {
     pokemon: {
@@ -58,7 +57,8 @@ const Pokemon = ({ pokemon }: PokemonInfoProps) => {
                             src={
                                 pokemon.sprites.other.dream_world
                                     .front_default ??
-                                pokemon.sprites.other.home.front_default
+                                pokemon.sprites.other.home.front_default ??
+                                "/pokebola.png"
                             }
                             alt=""
                         />
@@ -115,9 +115,11 @@ const Pokemon = ({ pokemon }: PokemonInfoProps) => {
 export default Pokemon;
 
 export async function getStaticProps({ params }: { params: { name: string } }) {
-    const pokemon = await Api.get(`/pokemon/${params.name}`).then(
-        (response) => response.data
-    );
+    const pokemon = await fetch(
+        `https://pokeapi.co/api/v2/pokemon/${params.name}`
+    )
+        .then((response) => response.json())
+        .then((pokemonData) => pokemonData);
 
     return {
         props: {
@@ -127,16 +129,19 @@ export async function getStaticProps({ params }: { params: { name: string } }) {
 }
 
 export async function getStaticPaths() {
-    const pokemons = await Api.get("/pokemon", {
-        params: { limit: 1126, offset: 0 },
-    })
-        .then((response) => response.data.results)
+    const pokemons = await fetch(
+        "https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0"
+    )
+        .then((response) => response.json())
+        .then((responseObject) => responseObject.results)
         .then((pokemonList) =>
-            pokemonList.map((pokemon: { name: string }) => ({
-                params: {
-                    name: pokemon.name,
-                },
-            }))
+            pokemonList.map((pokemon: { name: string }) => {
+                return {
+                    params: {
+                        name: pokemon.name,
+                    },
+                };
+            })
         );
 
     return {
