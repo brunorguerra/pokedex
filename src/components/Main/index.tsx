@@ -11,7 +11,7 @@ export const Main = () => {
 
     return (
         <Container>
-            <Pagination />
+            <Pagination resultsActive={true} />
             <div className="listPokemons">
                 {isLoading ? (
                     <Loading />
@@ -36,6 +36,7 @@ export const Main = () => {
                         />
                     ))
                 )}
+                <Pagination resultsActive={false} />
             </div>
         </Container>
     );

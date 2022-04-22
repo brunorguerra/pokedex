@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const Container = styled.section`
+type ContainerProps = {
+    resultsActive: boolean;
+};
+
+export const Container = styled.section<ContainerProps>`
     padding: 4rem 0 1rem;
     width: 100%;
     display: flex;
@@ -8,8 +12,10 @@ export const Container = styled.section`
     row-gap: 2rem;
     flex-flow: row wrap;
     align-items: center;
-    justify-content: space-between;
+    justify-content: ${(props) =>
+        props.resultsActive ? "space-between" : "center"};
     h2 {
+        display: ${(props) => (props.resultsActive ? "block" : "none")};
         font-size: 2rem;
     }
     .btnPagination {

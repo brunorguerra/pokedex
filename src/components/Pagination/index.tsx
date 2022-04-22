@@ -5,12 +5,16 @@ import { MdOutlineArrowBackIos } from "react-icons/md";
 import { useContext } from "react";
 import { PokedexContext } from "../../contexts/PokedexContext";
 
-export const Pagination = () => {
+type PaginationProps = {
+    resultsActive: boolean;
+};
+
+export const Pagination = ({ resultsActive }: PaginationProps) => {
     const { pokemonList, currentPage, totalPage, backPage, forwardPage } =
         useContext(PokedexContext);
 
     return (
-        <Container>
+        <Container resultsActive={resultsActive}>
             <h2>Pokémons encontrados {pokemonList.length}</h2>
 
             {totalPage > 0 && (
