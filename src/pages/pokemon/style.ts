@@ -13,9 +13,9 @@ export const Container = styled.main`
         flex-flow: row wrap;
         align-items: flex-start;
         justify-content: center;
-        gap: 3rem;
+        gap: 10rem;
         .img-pokemon {
-            width: 55rem;
+            width: 40rem;
             height: 50rem;
 
             display: flex;
@@ -96,6 +96,7 @@ export const Container = styled.main`
                 color: var(--text-white);
                 padding: 1rem 2rem;
                 border-radius: 2rem;
+                text-transform: capitalize;
             }
         }
         .stats-info {
@@ -107,6 +108,7 @@ export const Container = styled.main`
                 h4 {
                     font-size: 1.8rem;
                     font-weight: 700;
+                    text-transform: uppercase;
                 }
                 border-left: 0.4rem solid #ccc;
                 padding-left: 2rem;

@@ -89,23 +89,21 @@ export const PokedexProvider = ({ children }: PokedexContextProps) => {
         if (pokemonName) {
             setIsLoading(true);
             try {
-                setIsNotFoundPokemon(false);
                 const pokemonData = await Api.get(
                     `/pokemon/${pokemonName
                         .trim()
                         .replace(" ", "-")
                         .toLowerCase()}`
                 );
-                setCurrentPage(0);
-                setTotalPage(1);
+                setTotalPage(0);
+                setIsNotFoundPokemon(false);
                 setIsLoading(false);
                 setPokemonList([pokemonData.data]);
             } catch (error) {
-                setCurrentPage(0);
-                setTotalPage(1);
-                setPokemonList([]);
+                setTotalPage(0);
                 setIsNotFoundPokemon(true);
                 setIsLoading(false);
+                setPokemonList([]);
             }
         }
     }

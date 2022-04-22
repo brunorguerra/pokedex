@@ -4,7 +4,7 @@ import Link from "next/link";
 import { FormEvent, useContext, useRef } from "react";
 import { PokedexContext } from "../../contexts/PokedexContext";
 
-export const Header = () => {
+export const Header = ({ searchActive }: { searchActive: boolean }) => {
     const { findPokemon } = useContext(PokedexContext);
     const inputRef = useRef<HTMLInputElement>(null);
 
@@ -25,17 +25,19 @@ export const Header = () => {
                 </a>
             </Link>
 
-            <form action="" method="GET">
-                <input
-                    ref={inputRef}
-                    type="text"
-                    name="pokemon"
-                    placeholder="Buscar Pokemon"
-                />
-                <button type="submit" onClick={(e) => handleSubmit(e)}>
-                    <BiSearch size={30} color="#fff" />
-                </button>
-            </form>
+            {searchActive && (
+                <form action="" method="GET">
+                    <input
+                        ref={inputRef}
+                        type="text"
+                        name="pokemon"
+                        placeholder="Buscar Pokemon"
+                    />
+                    <button type="submit" onClick={(e) => handleSubmit(e)}>
+                        <BiSearch size={30} color="#fff" />
+                    </button>
+                </form>
+            )}
         </Container>
     );
 };

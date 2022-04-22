@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { useContext } from "react";
+import { PokedexContext } from "../../contexts/PokedexContext";
 import { Container } from "./style";
 
 type PokemonProps = {
@@ -9,9 +11,11 @@ type PokemonProps = {
 };
 
 export const CardPokemon = ({ id, name, image, type }: PokemonProps) => {
+    const { setIsLoading } = useContext(PokedexContext);
+
     return (
         <Link href={`/pokemon/${name}`}>
-            <Container>
+            <Container onClick={() => setIsLoading(true)}>
                 <div className="image">
                     <p>N° {id}</p>
                     <img src={image} alt={`Pokémon ${name}`} />

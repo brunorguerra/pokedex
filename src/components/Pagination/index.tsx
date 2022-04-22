@@ -13,19 +13,21 @@ export const Pagination = () => {
         <Container>
             <h2>Pokémons encontrados {pokemonList.length}</h2>
 
-            <div className="btnPagination">
-                <button onClick={backPage}>
-                    <MdOutlineArrowBackIos size={20} color="#fff" />
-                </button>
-                <div className="pages">
-                    <p className="currentPage">
-                        {currentPage + 1} de {totalPage}
-                    </p>
+            {totalPage > 0 && (
+                <div className="btnPagination">
+                    <button onClick={backPage}>
+                        <MdOutlineArrowBackIos size={20} color="#fff" />
+                    </button>
+                    <div className="pages">
+                        <p className="currentPage">
+                            {currentPage + 1} de {totalPage}
+                        </p>
+                    </div>
+                    <button onClick={forwardPage}>
+                        <MdOutlineArrowForwardIos size={20} color="#fff" />
+                    </button>
                 </div>
-                <button onClick={forwardPage}>
-                    <MdOutlineArrowForwardIos size={20} color="#fff" />
-                </button>
-            </div>
+            )}
         </Container>
     );
 };
