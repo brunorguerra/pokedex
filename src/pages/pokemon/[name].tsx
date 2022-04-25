@@ -10,6 +10,7 @@ type PokemonInfoProps = {
         height: number;
         weight: number;
         abilities: AbilitiesProps[];
+        moves: MovesProps[];
         sprites: {
             other: {
                 dream_world: {
@@ -39,6 +40,17 @@ type AbilitiesProps = {
     ability: {
         name: string;
     };
+};
+type MovesProps = {
+    move: {
+        name: string;
+    };
+    version_group_details: {
+        level_learned_at: number;
+        move_learn_method: {
+            name: string;
+        };
+    }[];
 };
 
 const Pokemon = ({ pokemon }: PokemonInfoProps) => {
@@ -105,6 +117,77 @@ const Pokemon = ({ pokemon }: PokemonInfoProps) => {
                                 <p>{stat.base_stat}</p>
                             </div>
                         ))}
+                    </div>
+                </div>
+
+                <div className="moves">
+                    <h2>Moves</h2>
+                    <div className="content-moves">
+                        <div className="level-up column">
+                            <h3>Level-UP</h3>
+                            {pokemon.moves.map((move, index) => {
+                                return (
+                                    move.version_group_details[0]
+                                        .move_learn_method.name ==
+                                        "level-up" && (
+                                        <div className="move" key={index}>
+                                            <h3>{move.move.name}</h3>
+                                            <p>
+                                                Level{" "}
+                                                {
+                                                    move
+                                                        .version_group_details[0]
+                                                        .level_learned_at
+                                                }
+                                            </p>
+                                        </div>
+                                    )
+                                );
+                            })}
+                        </div>
+                        <div className="egg column">
+                            <h3>Herdar do Pai</h3>
+                            {pokemon.moves.map((move, index) => {
+                                return (
+                                    move.version_group_details[0]
+                                        .move_learn_method.name == "egg" && (
+                                        <div className="move" key={index}>
+                                            <h3>{move.move.name}</h3>
+                                            <p>Probabilidade de Herdar</p>
+                                        </div>
+                                    )
+                                );
+                            })}
+                        </div>
+                        <div className="tutor column">
+                            <h3>Treinador Pokémon</h3>
+                            {pokemon.moves.map((move, index) => {
+                                return (
+                                    move.version_group_details[0]
+                                        .move_learn_method.name == "tutor" && (
+                                        <div className="move" key={index}>
+                                            <h3>{move.move.name}</h3>
+                                            <p>Treinador Pokémon</p>
+                                        </div>
+                                    )
+                                );
+                            })}
+                        </div>
+                        <div className="machine column">
+                            <h3>Máquina de TM e HM</h3>
+                            {pokemon.moves.map((move, index) => {
+                                return (
+                                    move.version_group_details[0]
+                                        .move_learn_method.name ==
+                                        "machine" && (
+                                        <div className="move" key={index}>
+                                            <h3>{move.move.name}</h3>
+                                            <p>TM ou HM</p>
+                                        </div>
+                                    )
+                                );
+                            })}
+                        </div>
                     </div>
                 </div>
             </Container>

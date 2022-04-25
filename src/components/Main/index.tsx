@@ -36,7 +36,6 @@ export const Main = () => {
                         />
                     ))
                 )}
-                <Pagination resultsActive={false} />
             </div>
         </Container>
     );

@@ -119,5 +119,42 @@ const Container = styled.main`
             }
         }
     }
+
+    .moves {
+        padding: 12rem 0;
+        h2 {
+            font-size: 2.8rem;
+        }
+        .content-moves {
+            margin-top: 4rem;
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            .column {
+                padding: 2rem 0;
+                h3 {
+                    display: block;
+                    font-size: 2.2rem;
+                    margin-bottom: 3rem;
+                }
+                .move {
+                    display: inline-block;
+                    margin-right: 4rem;
+                    margin-bottom: 4rem;
+                    padding: 1rem 0;
+                    h3 {
+                        font-size: 2rem;
+                        color: var(--blueLight);
+                        text-transform: capitalize;
+                    }
+                    p {
+                        margin-top: 1rem;
+                        font-size: 1.6rem;
+                        color: var(--text-black);
+                    }
+                }
+            }
+        }
+    }
 `;
 export default Container;
